@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+@Html.ActionLink("Create New", "Create")
+<hr />
+<table class="userTestForm">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Country</th>
+        <th>Courses</th>
+        <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Name</td>
+            <td>@user.Email</td>
+            <td>@user.Gender</td>
+            <td>@user.Country</td>
+            <td>
+                @foreach (var item in user.Courses)
+                {
+                    @item.Name;<br />
+                }
+            </td>
+            <td>@user.Description</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { @userId = @user.UserID })
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { @userId = @user.UserID })
+            </td>
+        </tr>
+    }
+</table>
